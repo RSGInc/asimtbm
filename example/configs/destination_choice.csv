@@ -1,0 +1,5 @@
+description,target,expression,hbwl,hbwm,hbwh
+travel distance,impedance,skims['mf3'],-0.2,-0.2,-0.2
+parking cost,dest_park_cost,dest_zone['ltpkg'],-0.25,-0.2,-0.15
+Size variable,size,log(dest_zone['totemp']),1,1,1
+Not available,no_size,size==0,NOT_AVAIL,NOT_AVAIL,NOT_AVAIL

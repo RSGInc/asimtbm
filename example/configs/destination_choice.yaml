@@ -1,0 +1,31 @@
+
+spec_file_name: destination_choice.csv
+
+aggregate_od_matrices:
+  skims: skims.omx
+
+# destination zone matrices
+# will be made available to parser and can be used in the spec file
+dest_zone:
+  - ltpkg  # long term parking cost per day
+  - totemp  # total employments
+
+# origin zone matrices
+orig_zone:
+  - totemp
+
+# number of trips (from orig zone) for each segment.
+# at least one segment must be given, and must have a table in tables.yaml
+# and a coefficients column in `spec_file_name`
+orig_zone_trips:
+  hbwl: hbwprl
+  hbwm: hbwprm
+  hbwh: hbwprh
+
+# functions used in the spec file.
+# all methods are imported from the numpy package.
+numpy:
+  - log
+
+CONSTANTS:
+  NOT_AVAIL: -999
