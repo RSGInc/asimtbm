@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software Implementation &mdash; AsimTBM 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Resources" href="resources.html" />
+    <link rel="prev" title="Example" href="example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AsimTBM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#activitysim-framework">ActivitySim Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-asimtbm.skims">skims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-asimtbm.trips">trips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-asimtbm.destination_choice">destination_choice</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tables">Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-asimtbm.zones.zones()">zones</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contribution-guidelines">Contribution Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-notes">Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AsimTBM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Software Implementation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/software.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-implementation">
+<h1>Software Implementation<a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the asimtbm software implementation and how to contribute.</p>
+<p>The implementation starts with
+the ActivitySim framework, which serves as the foundation for the software.  The framework, as briefly described
+below, includes features for data pipeline management, expression handling, testing, etc.  Built upon the
+framework are additional core components for benefits calculation.</p>
+<div class="section" id="activitysim-framework">
+<h2>ActivitySim Framework<a class="headerlink" href="#activitysim-framework" title="Permalink to this headline">¶</a></h2>
+<p>asimtbm is implemented in the <a class="reference external" href="https://github.com/activitysim/activitysim">ActivitySim</a>
+framework.  As summarized <a class="reference external" href="https://activitysim.github.io/activitysim/#software-design">here</a>,
+being implemented in the ActivitySim framework means:</p>
+<ul class="simple">
+<li><p>Overall Design</p>
+<ul>
+<li><p>Implemented in Python, and makes heavy use of the vectorized backend C/C++ libraries in <a class="reference external" href="http://pandas.pydata.org">pandas</a> and <a class="reference external" href="http://www.numpy.org">numpy</a>.</p></li>
+<li><p>Vectorization instead of for loops when possible</p></li>
+<li><p>Runs sub-models that solve Python expression files that operate on data tables</p></li>
+</ul>
+</li>
+<li><p>Data Handling</p>
+<ul>
+<li><p>Inputs are in CSV format, with the exception of settings</p></li>
+<li><p>CSVs are read-in as pandas tables and stored in an intermediate HDF5 binary file that is used for data I/O throughout the model run</p></li>
+<li><p>Key outputs are written to CSV files</p></li>
+</ul>
+</li>
+<li><p>Key Data Structures</p>
+<ul>
+<li><p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">pandas.DataFrame</a> - A data table with rows and columns, similar to an R data frame, Excel worksheet, or database table</p></li>
+<li><p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html">pandas.Series</a> - a vector of data, a column in a DataFrame table or a 1D array</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> - an N-dimensional array of items of the same type, such as a matrix</p></li>
+</ul>
+</li>
+<li><p>Expressions</p>
+<ul>
+<li><p>Model expressions are in CSV files and contain Python expressions, mainly pandas/numpy expression that operate on the input data tables. This helps to avoid modifying Python code when making changes to the model calculations.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://activitysim.github.io/activitysim/development.html">Code Documentation</a></p>
+<ul>
+<li><p>Python code according to <a class="reference external" href="https://pypi.python.org/pypi/pycodestyle">pycodestyle</a> style guide</p></li>
+<li><p>Written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> markup, built with <a class="reference external" href="http://www.sphinx-doc.org/en/stable">Sphinx</a> and docstrings written in <a class="reference external" href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt">numpydoc</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://activitysim.github.io/activitysim/development.html">Testing</a></p>
+<ul>
+<li><p>A protected master branch that can only be written to after tests have passed</p></li>
+<li><p><a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> for tests</p></li>
+<li><p><a class="reference external" href="https://travis-ci.org">TravisCI</a> for building and testing with each commit</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>Software components.</p>
+<div class="section" id="module-asimtbm.skims">
+<span id="skims"></span><h3>skims<a class="headerlink" href="#module-asimtbm.skims" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="asimtbm.skims.read_skims">
+<code class="sig-prename descclassname">asimtbm.skims.</code><code class="sig-name descname">read_skims</code><span class="sig-paren">(</span><em class="sig-param">zone_index</em>, <em class="sig-param">data_dir</em>, <em class="sig-param">model_settings</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.skims.read_skims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads OpenMatrix skims</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>zone_index</strong><span class="classifier">pandas Index obj</span></dt><dd></dd>
+<dt><strong>data_dir</strong><span class="classifier">str</span></dt><dd><p>data directory path</p>
+</dd>
+<dt><strong>model_settings</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dictionary of Skims objects</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-asimtbm.trips">
+<span id="trips"></span><h3>trips<a class="headerlink" href="#module-asimtbm.trips" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="asimtbm.trips.apply_segment_coeffs">
+<code class="sig-prename descclassname">asimtbm.trips.</code><code class="sig-name descname">apply_segment_coeffs</code><span class="sig-paren">(</span><em class="sig-param">od_df</em>, <em class="sig-param">spec</em>, <em class="sig-param">locals_dict</em>, <em class="sig-param">segment</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.trips.apply_segment_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply each target variable in the origin-destination
+DataFrame by a segment-specific coefficient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>od_df</strong><span class="classifier">pandas DataFrame</span></dt><dd><p>the raw origin-destination DataFrame</p>
+</dd>
+<dt><strong>spec</strong><span class="classifier">pandas DataFrame, assignment expressions</span></dt><dd></dd>
+<dt><strong>locals_dict</strong><span class="classifier">dict</span></dt><dd><p>dictionary of constants, etc.</p>
+</dd>
+<dt><strong>segment: str, segment name</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas DataFrame</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.trips.calculate_num_trips">
+<code class="sig-prename descclassname">asimtbm.trips.</code><code class="sig-name descname">calculate_num_trips</code><span class="sig-paren">(</span><em class="sig-param">od_df</em>, <em class="sig-param">zones</em>, <em class="sig-param">spec</em>, <em class="sig-param">locals_dict</em>, <em class="sig-param">segments</em>, <em class="sig-param">trace_rows=None</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.trips.calculate_num_trips" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of trips for each origin-destination zone pair for
+each segment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>od_df</strong><span class="classifier">pandas DataFrame</span></dt><dd><p>origin-destination DataFrame of target variables calculated
+from the expressions file</p>
+</dd>
+<dt><strong>zones</strong><span class="classifier">pandas DataFrame, zones table</span></dt><dd></dd>
+<dt><strong>spec</strong><span class="classifier">pandas DataFrame, assignment expressions</span></dt><dd></dd>
+<dt><strong>locals_dict</strong><span class="classifier">dict</span></dt><dd><p>dictionary of constants, etc.</p>
+</dd>
+<dt><strong>segments</strong><span class="classifier">dict</span></dt><dd><p>dictionary of segments. key is segment name, value is
+corresponding column in zones table</p>
+</dd>
+<dt><strong>trace_rows</strong><span class="classifier">pandas Series</span></dt><dd><p>filter rows to include in trace</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd><p>writes calculations trace and registers trips table to pipeline</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.trips.logit">
+<code class="sig-prename descclassname">asimtbm.trips.</code><code class="sig-name descname">logit</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">trips_series</em>, <em class="sig-param">chooser_col='orig'</em>, <em class="sig-param">trace=False</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.trips.logit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of trips taken between each origin-destination pair
+using a logit utility model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pandas DataFrame, origin-destination pairs</span></dt><dd></dd>
+<dt><strong>trips_series</strong><span class="classifier">pandas Series</span></dt><dd><p>number of trips originating from each zone</p>
+</dd>
+<dt><strong>chooser_col</strong><span class="classifier">str</span></dt><dd><p>name of origin zone column in df</p>
+</dd>
+<dt><strong>trace</strong><span class="classifier">bool</span></dt><dd><p>whether to save utility and probability calculations back
+to original dataframe</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas Series</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<p>ActivitySim pipeline steps.</p>
+<div class="section" id="module-asimtbm.destination_choice">
+<span id="destination-choice"></span><h3>destination_choice<a class="headerlink" href="#module-asimtbm.destination_choice" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="asimtbm.destination_choice.create_locals_dict">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">create_locals_dict</code><span class="sig-paren">(</span><em class="sig-param">model_settings</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.create_locals_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial local parameters for the destination choice step.
+These will be expanded later and used in subsequent evaluations.</p>
+<p>Gets both constants and math expressions from model settings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model_settings</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.create_od_table">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">create_od_table</code><span class="sig-paren">(</span><em class="sig-param">od_index</em>, <em class="sig-param">spec</em>, <em class="sig-param">locals_dict</em>, <em class="sig-param">trace_od</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.create_od_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign variables with ActivitySim’s assign and register output to pipeline</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>od_index</strong><span class="classifier">pandas MultiIndex</span></dt><dd></dd>
+<dt><strong>spec</strong><span class="classifier">pandas DataFrame, assignment expressions</span></dt><dd></dd>
+<dt><strong>locals_dict</strong><span class="classifier">dict,</span></dt><dd><p>dictionary containing constants and zone matrices</p>
+</dd>
+<dt><strong>trace_od</strong><span class="classifier">list or dict, origin-destination pair</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>od_table</strong><span class="classifier">pandas DataFrame</span></dt><dd><p>all origin-destination pairs</p>
+</dd>
+<dt><strong>trace_rows</strong><span class="classifier">pandas Series or None</span></dt><dd><p>boolean filter of rows to trace</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.create_zone_matrices">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">create_zone_matrices</code><span class="sig-paren">(</span><em class="sig-param">zones</em>, <em class="sig-param">od_index</em>, <em class="sig-param">model_settings</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.create_zone_matrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert zone values to flattened arrays</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>zones</strong><span class="classifier">pandas DataFrame</span></dt><dd></dd>
+<dt><strong>od_index</strong><span class="classifier">pandas MultiIndex</span></dt><dd></dd>
+<dt><strong>model_settings</strong><span class="classifier">dict</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dictionary of flattened dest/orig zones</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.create_zone_summary">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">create_zone_summary</code><span class="sig-paren">(</span><em class="sig-param">od_table</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.create_zone_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates summary of od_table summed by origin zone</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>od_table</strong><span class="classifier">pandas DataFrame</span></dt><dd><p>results of expression assignment</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd><p>registers summary to pipeline</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.destination_choice">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">destination_choice</code><span class="sig-paren">(</span><em class="sig-param">zones</em>, <em class="sig-param">data_dir</em>, <em class="sig-param">trace_od</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.destination_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>ActivitySim step that creates a raw destination choice table
+that can be later used to calculate utilities.</p>
+<p>settings.yaml must specify ‘destination_choice’ under ‘models’ for
+this step to run in the pipeline. destination_choice.yaml must also
+specify the following:</p>
+<blockquote>
+<div><p>spec_file_name: &lt;expressions csv&gt;
+aggregate_od_matrices:</p>
+<blockquote>
+<div><p>skims: &lt;skims omx file&gt;</p>
+</div></blockquote>
+<p>dest_zone: &lt;list of destination zone attribute columns&gt;
+orig_zone_trips: &lt;dict of num trips for each segment&gt;</p>
+</div></blockquote>
+<p>&#64;inject.step before the method definition registers this step with the pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>zones</strong><span class="classifier">pandas DataFrame of zone attributes</span></dt><dd></dd>
+<dt><strong>data_dir</strong><span class="classifier">str, data directory path</span></dt><dd></dd>
+<dt><strong>trace_od</strong><span class="classifier">list or dict</span></dt><dd><p>origin-destination pair to trace.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd><p>but writes final dataframe to csv and registers it
+to the pipeline.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.get_trace_rows">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">get_trace_rows</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">trace_od</em>, <em class="sig-param">orig='orig'</em>, <em class="sig-param">dest='dest'</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.get_trace_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter out rows from DataFrame matching the trace_od</p>
+<p>Chooses rows matching trace_od. Specify just ‘o’ to trace
+all trips originating in that zone, just ‘d’ to trace all
+trips ending on that zone, or both to trace the single trip
+starting in ‘o’ and ending in ‘d’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pandas DataFrame with columns matching orig, dest</span></dt><dd></dd>
+<dt><strong>trace_od</strong><span class="classifier">list or dict</span></dt><dd><p>list of length == 2 or dict with keys ‘o’, ‘d’</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas Series or None</dt><dd><p>non-indexed pandas filter. None if no trace_od or parsing error.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="asimtbm.destination_choice.read_spec_file">
+<code class="sig-prename descclassname">asimtbm.destination_choice.</code><code class="sig-name descname">read_spec_file</code><span class="sig-paren">(</span><em class="sig-param">model_settings</em>, <em class="sig-param">segments</em><span class="sig-paren">)</span><a class="headerlink" href="#asimtbm.destination_choice.read_spec_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read expressions file from a csv using instructions from model settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model_settings: dict, from yaml</strong></dt><dd></dd>
+<dt><strong>segments</strong><span class="classifier">dict, origin zone trip segments</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas DataFrame</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="tables">
+<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<p>ActivitySim pipeline tables.</p>
+<div class="section" id="module-asimtbm.zones.zones()">
+<span id="zones"></span><h3>zones<a class="headerlink" href="#module-asimtbm.zones.zones()" title="Permalink to this headline">¶</a></h3>
+<p>ActivitySim pipeline table of raw zone data.</p>
+<p>Reads zone filenames from tables.yaml and combines
+into single table which is then registered to the pipeline.
+Each zone file must be the same length, and unindexed.</p>
+</div>
+</div>
+<div class="section" id="contribution-guidelines">
+<h2>Contribution Guidelines<a class="headerlink" href="#contribution-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>asimtbm development follows the same <a class="reference external" href="https://activitysim.github.io/activitysim/development.html">development guidelines</a> as ActivitySim.</p>
+</div>
+<div class="section" id="release-notes">
+<h2>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>v0.1 - pre-release</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="example.html" class="btn btn-neutral float-left" title="Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Blake Rosenthal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
