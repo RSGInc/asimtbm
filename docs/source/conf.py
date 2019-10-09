@@ -15,14 +15,16 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import sphinx_rtd_theme
+import asimtbm
 # -- Project information -----------------------------------------------------
 
-project = 'AsimTBM'
-copyright = '2019, Blake Rosenthal'
-author = 'Blake Rosenthal'
+project = asimtbm.__name__
+author = asimtbm.__author__
+copyright = '2019, ' + author
+
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = asimtbm.__version__
 
 
 # -- General configuration ---------------------------------------------------
