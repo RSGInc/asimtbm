@@ -433,13 +433,18 @@ that can be later used to calculate utilities.</p>
 this step to run in the pipeline. destination_choice.yaml must also
 specify the following:</p>
 <blockquote>
-<div><p>spec_file_name: &lt;expressions csv&gt;
-aggregate_od_matrices:</p>
-<blockquote>
-<div><p>skims: &lt;skims omx file&gt;</p>
-</div></blockquote>
-<p>dest_zone: &lt;list of destination zone attribute columns&gt;
-orig_zone_trips: &lt;dict of num trips for each segment&gt;</p>
+<div><ul class="simple">
+<li><p>spec_file_name: &lt;expressions csv&gt;</p></li>
+<li><dl class="simple">
+<dt>aggregate_od_matrices:</dt><dd><ul>
+<li><p>skims: &lt;skims omx file&gt;</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>dest_zone: &lt;list of destination zone attribute columns&gt;</p></li>
+<li><p>orig_zone_trips: &lt;dict of num trips for each segment&gt;</p></li>
+</ul>
 </div></blockquote>
 <p>&#64;inject.step before the method definition registers this step with the pipeline.</p>
 <dl class="field-list simple">
