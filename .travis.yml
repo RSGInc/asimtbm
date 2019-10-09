@@ -30,6 +30,7 @@ after_success:
 - cd docs
 - make clean
 - make html
+- touch build/html/.nojekyll
 
 deploy:
   provider: pages
