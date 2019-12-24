@@ -30,11 +30,11 @@ def destination_choice(zones, data_dir, trace_od):
     this step to run in the pipeline. destination_choice.yaml must also
     specify the following:
 
-        spec_file_name: <expressions csv>
-        aggregate_od_matrices:
-          skims: <skims omx file>
-        dest_zone: <list of destination zone attribute columns>
-        orig_zone_trips: <dict of num trips for each segment>
+        - spec_file_name: <expressions csv>
+        - aggregate_od_matrices:
+            - skims: <skims omx file>
+        - dest_zone: <list of destination zone attribute columns>
+        - orig_zone_trips: <dict of num trips for each segment>
 
     @inject.step before the method definition registers this step with the pipeline.
 
@@ -47,7 +47,6 @@ def destination_choice(zones, data_dir, trace_od):
 
     Returns
     -------
-
     None
         but writes final dataframe to csv and registers it
         to the pipeline.

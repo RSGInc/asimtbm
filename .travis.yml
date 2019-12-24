@@ -22,3 +22,21 @@ install:
 script:
 - pycodestyle --max-line-length=100 .
 - py.test --cov . --cov-report term-missing
+
+after_success:
+- coveralls
+# Build docs
+- pip install sphinx numpydoc sphinx_rtd_theme
+- cd docs
+- make clean
+- make html
+- touch build/html/.nojekyll
+
+deploy:
+  provider: pages
+  local_dir: docs/build/html
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep_history: true
+  on:
+    branch: develop
