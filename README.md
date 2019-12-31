@@ -1,5 +1,5 @@
 # asimtbm
-Trip-based destination choice model implemented in the ActivitySim framework
+Trip-based destination choice model and matrix balancing implemented in the ActivitySim framework
 
 ## Documentation
 
