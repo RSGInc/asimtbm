@@ -1,35 +1,24 @@
 import os
 import pandas as pd
 
-from activitysim.core import tracing
 from activitysim.core import inject
 from activitysim.core import pipeline
 
 from activitysim.core.config import setting
 
-
-def setup_working_dir():
-
-    example_dir = os.path.join(os.path.dirname(__file__), os.pardir)
-    os.chdir(example_dir)
-
-    tracing.delete_output_files('csv')
-    tracing.delete_output_files('txt')
-    tracing.delete_output_files('log')
-    tracing.delete_output_files('h5')
+from .utils import setup_working_dir
 
 
 def test_example():
 
-    setup_working_dir()
+    setup_working_dir('example')
 
     # importing asimtbm also registers injectibles
     import asimtbm
+    asimtbm.config_logger()
 
     trace_od = inject.get_injectable('trace_od')
     assert trace_od == {'o': 3, 'd': 32}
-
-    asimtbm.config_logger()
 
     output_files = os.listdir(os.path.join(os.getcwd(), 'output')).remove('.gitignore')
     assert not output_files
@@ -37,6 +26,7 @@ def test_example():
     models = setting('models')
     expected_models = [
         'destination_choice',
+        'balance_trips',
         'write_data_dictionary',
         'write_tables',
     ]
@@ -62,6 +52,8 @@ def test_example():
         'asimtbm.log',
         'data_dict.txt',
         'pipeline.h5',
+        'trace.trips_unbalanced.csv',
+        'trace.trips_balanced.csv',
     ]
 
     for file in final_output_files + trace_output_files + other_output_files:
