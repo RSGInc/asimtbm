@@ -82,7 +82,6 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
@@ -152,29 +151,50 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.trips.apply_segment_coeffs">apply_segment_coeffs() (in module asimtbm.trips)</a>
+      <li><a href="software.html#asimtbm.utils.trips.apply_segment_coeffs">apply_segment_coeffs() (in module asimtbm.utils.trips)</a>
 </li>
-      <li><a href="software.html#module-asimtbm.destination_choice">asimtbm.destination_choice (module)</a>
+      <li><a href="software.html#module-asimtbm.steps.balance_trips">asimtbm.steps.balance_trips (module)</a>
+</li>
+      <li><a href="software.html#module-asimtbm.steps.destination_choice">asimtbm.steps.destination_choice (module)</a>
+</li>
+      <li><a href="software.html#module-asimtbm.tables.zones">asimtbm.tables.zones (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#module-asimtbm.skims">asimtbm.skims (module)</a>
+      <li><a href="software.html#module-asimtbm.utils.matrix_balancer">asimtbm.utils.matrix_balancer (module)</a>
 </li>
-      <li><a href="software.html#module-asimtbm.trips">asimtbm.trips (module)</a>
+      <li><a href="software.html#module-asimtbm.utils.skims">asimtbm.utils.skims (module)</a>
 </li>
-      <li><a href="software.html#module-asimtbm.zones.zones()">asimtbm.zones.zones() (module)</a>
+      <li><a href="software.html#module-asimtbm.utils.tracing">asimtbm.utils.tracing (module)</a>
+</li>
+      <li><a href="software.html#module-asimtbm.utils.trips">asimtbm.utils.trips (module)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="software.html#asimtbm.utils.matrix_balancer.Balancer.balance">balance() (asimtbm.utils.matrix_balancer.Balancer method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="software.html#asimtbm.steps.balance_trips.balance_trips">balance_trips() (in module asimtbm.steps.balance_trips)</a>
+</li>
+      <li><a href="software.html#asimtbm.utils.matrix_balancer.Balancer">Balancer (class in asimtbm.utils.matrix_balancer)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -182,17 +202,19 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.trips.calculate_num_trips">calculate_num_trips() (in module asimtbm.trips)</a>
+      <li><a href="software.html#asimtbm.steps.balance_trips.calculate_aggregates">calculate_aggregates() (in module asimtbm.steps.balance_trips)</a>
 </li>
-      <li><a href="software.html#asimtbm.destination_choice.create_locals_dict">create_locals_dict() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.utils.trips.calculate_num_trips">calculate_num_trips() (in module asimtbm.utils.trips)</a>
+</li>
+      <li><a href="software.html#asimtbm.steps.destination_choice.create_locals_dict">create_locals_dict() (in module asimtbm.steps.destination_choice)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.destination_choice.create_od_table">create_od_table() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.steps.destination_choice.create_od_table">create_od_table() (in module asimtbm.steps.destination_choice)</a>
 </li>
-      <li><a href="software.html#asimtbm.destination_choice.create_zone_matrices">create_zone_matrices() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.steps.destination_choice.create_zone_matrices">create_zone_matrices() (in module asimtbm.steps.destination_choice)</a>
 </li>
-      <li><a href="software.html#asimtbm.destination_choice.create_zone_summary">create_zone_summary() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.steps.destination_choice.create_zone_summary">create_zone_summary() (in module asimtbm.steps.destination_choice)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -200,15 +222,7 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.destination_choice.destination_choice">destination_choice() (in module asimtbm.destination_choice)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="example.html#index-1">example</a>
+      <li><a href="software.html#asimtbm.steps.destination_choice.destination_choice">destination_choice() (in module asimtbm.steps.destination_choice)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -216,7 +230,7 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.destination_choice.get_trace_rows">get_trace_rows() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.steps.balance_trips.get_trips_df">get_trips_df() (in module asimtbm.steps.balance_trips)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -224,7 +238,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.trips.logit">logit() (in module asimtbm.trips)</a>
+      <li><a href="software.html#asimtbm.utils.trips.logit">logit() (in module asimtbm.utils.trips)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -232,11 +246,11 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.skims.read_skims">read_skims() (in module asimtbm.skims)</a>
+      <li><a href="software.html#asimtbm.utils.skims.read_skims">read_skims() (in module asimtbm.utils.skims)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="software.html#asimtbm.destination_choice.read_spec_file">read_spec_file() (in module asimtbm.destination_choice)</a>
+      <li><a href="software.html#asimtbm.steps.destination_choice.read_spec_file">read_spec_file() (in module asimtbm.steps.destination_choice)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,7 +258,15 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="example.html#index-0">tutorial</a>
+      <li><a href="software.html#asimtbm.utils.tracing.trace_filter">trace_filter() (in module asimtbm.utils.tracing)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="software.html#asimtbm.tables.zones.zones">zones() (in module asimtbm.tables.zones)</a>
 </li>
   </ul></td>
 </tr></table>

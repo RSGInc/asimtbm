@@ -82,7 +82,6 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
@@ -151,17 +150,14 @@
             
   <div class="section" id="asimtbm">
 <h1>asimtbm<a class="headerlink" href="#asimtbm" title="Permalink to this headline">¶</a></h1>
-<p>asimtbm is …</p>
-<p>asimtbm is implemented in the <a class="reference external" href="https://github.com/activitysim/activitysim">ActivitySim framework</a> and
-therefore exposes its calculations in CSV files that contain pandas and numpy
+<p>asimtbm is a collection of trip-based modeling tools
+implemented in the <a class="reference external" href="https://github.com/activitysim/activitysim">ActivitySim framework</a>.  Currently asimtbm
+contains an aggregate destination choice model and a matrix/table balancing tool.  As an activitysim
+package, asimtbm exposes its calculations in CSV files that contain pandas and numpy
 expressions that operate on the input data tables and matrices. This design avoids
 having to modify Python code when making changes to the benefit calculations.  Users are therefore strongly
 encouraged to refer to the <a class="reference external" href="https://activitysim.github.io/activitysim/">ActivitySim documentation</a> for
 more information about how asimtbm works and operates.</p>
-<div class="section" id="benefits">
-<h2>Benefits<a class="headerlink" href="#benefits" title="Permalink to this headline">¶</a></h2>
-<p>…</p>
-</div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -169,40 +165,24 @@ more information about how asimtbm works and operates.</p>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#running-the-model">Running the Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#process-overview">Process Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#expressions">Expressions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="example.html#example-model-design">Example Model Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="example.html#folder-and-file-setup">Folder and File Setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="example.html#inputs">Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="example.html#configuration">Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="example.html#logging">Logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="example.html#pipeline">Pipeline</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="example.html#running-the-example">Running the Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html#outputs">Outputs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="example.html#tracing">Tracing</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software Implementation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="software.html#activitysim-framework">ActivitySim Framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software.html#components">Components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.skims">skims</a></li>
-<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.trips">trips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html#model-steps">Model Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.steps.destination_choice">destination_choice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.steps.balance_trips">balance_trips</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="software.html#steps">Steps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.destination_choice">destination_choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html#data-tables">Data Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.tables.zones">zones</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="software.html#tables">Tables</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.zones.zones()">zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html#software-components">Software Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.utils.skims">skims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.utils.trips">trips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.utils.matrix_balancer">matrix balancer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="software.html#module-asimtbm.utils.tracing">tracing</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="software.html#contribution-guidelines">Contribution Guidelines</a></li>
