@@ -1,0 +1,16 @@
+# Balance destination choice results to destination target totals.
+# can either specify a 'total' column to sum over all
+# segments or can break down destination totals by segment,
+# but not both.
+
+# assumes trips table is seed matrix
+
+dest_zone_trip_targets:
+  # total: totemp
+  hbwl: target_low
+  hbwm: target_med
+  hbwh: target_high
+
+# Balancing iteration and closure criteria
+max_iterations: 25 # default is 50
+balance_closure: 0.001 # default is 0.001
